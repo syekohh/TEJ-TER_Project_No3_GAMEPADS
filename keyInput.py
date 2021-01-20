@@ -3,22 +3,19 @@ import time
 import serial
 
 
-def mainnn():
+portNo = '/dev/tty.usbmodem14101'
+keyboard = Controller()
 
-    portNo = '/dev/tty.usbmodem14101'
-    keyboard = Controller()
+ser = serial.Serial(portNo, 9600)
 
-    ser = serial.Serial(portNo, 9600)
-    time.sleep(2)
+boolTrue = True
 
-    try:
-        readVal = ser.readline()
-        print(readVal)
-    except serial.SerialException:
-        return None
-
-    while readVal == 65:
-        time.sleep(2)
-        keyboard.pressed('A')
+while (boolTrue):
+    readVal = int(ser.readline())
+    time.sleep(1)
+    if (readVal == 65):
+        keyboard.press('A')
         keyboard.release('A')
-
+    if (readVal == 66):
+        keyboard.press('B')
+        keyboard.release('B')
