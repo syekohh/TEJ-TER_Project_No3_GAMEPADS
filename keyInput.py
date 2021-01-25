@@ -10,8 +10,12 @@ ser = serial.Serial(portNo, 9600)
 
 boolTrue = True
 
+print('boolTrue')
+
 while (boolTrue):
     readVal = str(ser.readline())
+    readVal = readVal[2:-5]
+    print(readVal)
     # time.sleep(.1)
     if (readVal == 99):
         keyboard.press(Key.up)
